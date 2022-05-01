@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="vendors/jquery-3.6.0.min.js"></script>
     <script src="scripts/client.js"></script>
-    <link rel="stylesheet" href="scripts/style.css" />
+    <link rel="stylesheet" href="scripts/style.css"/>
     <title>The Calculator</title>
   </head>
   <body>
@@ -14,16 +14,22 @@
     <table>
       <input id="display" placeholder="55378008">
       <tr>
-        <td><button id="7">7</button></td>
-        <td><button id="8">8</button></td>
-        <td><button id="9">9</button></td>
+        <td><button id="AC">A/C</button></td>
+        <td><button id="backspace">⌫</button></td>
+        <td><button id="^" class="operator">^</button></td>
         <th><button id="/" class="operator">÷</button></th>
+      </tr>
+      <tr>
+        <td><button id="7" class="number">7</button></td>
+        <td><button id="8" class="number">8</button></td>
+        <td><button id="9" class="number">9</button></td>
+        <th><button id="*" class="operator">×</button></th>
       </tr>
       <tr>
         <td><button id="4" class="number">4</button></td>
         <td><button id="5" class="number">5</button></td>
         <td><button id="6" class="number">6</button></td>
-        <th><button id="x" class="operator">×</button></th>
+        <th><button id="+" class="operator">+</button></th>
       </tr>
       <tr>
         <td><button id="1" class="number">1</button></td>
@@ -33,11 +39,12 @@
       </tr>
       <tr>
         <th><button id="0" class="number">0</button></th>
+        <th><button id="Math.PI" class="number">π</button></th>
         <th><button id=".">∙</button></th>
-        <th><button id="=">=</button></th>
-        <th><button id="+" class="operator">+</button></th>
+        <th><button id="equals">=</button></th>
       </tr>
     </table>
-    <div id="History"></div>
+    <div id="errorMessage"></div>
+    <div id="history"></div>
   </body>
 </html>

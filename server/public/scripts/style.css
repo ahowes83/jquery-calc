@@ -9,7 +9,7 @@ button {
   font-family: 'Lucida Console', 'Courier Prime', 'Courier New', monospace, sans-serif;
 }
 
-input {
+#display {
   width: 12.4em;
   text-align: right;
   background-color:powderblue;

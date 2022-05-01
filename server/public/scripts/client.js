@@ -1,26 +1,60 @@
 $(document).ready(onReady);
+let workingValue = '';
+let currentEquation = {
+  operandOne: '',
+  operandTwo: '',
+  operator: ''
+}
+let error = $("#errorMessage");
 
 function onReady() {
-  console.log('Suis la');
+  console.log('Suis là');
+
+  $(".number").click(function(){
+    workingValue += $(this).attr("id");
+    updateDisplay();
+  });
+
+  $(".operator").on('click', operate);
+
+  $("#equals").on('click', equate);
+
+  $("#backspace").on('click', function(){
+    workingValue = workingValue.slice(0, (workingValue.length - 1));
+  });
+
+  $("#AC").on('click', clearAll);
 }
 
-function getPets(){
-  // get pets from server
-  // use AJAX
-    $.ajax({ // hey JQ, do some AJAX
-      method: "GET",
-      url:"/pets"
-    }).then( function( response ){
-        // loop thru response
-        console.log( response );
-        // display each on DOM
-        // target and empty output element
-        const el = $( '#petsOut' );
-        el.empty();
-        for( let i=0; i< response.length; it+ ) {
-          // append each pet to output el
-          el.append( `<li>${responseli].name}: ${response[i].type}`
-        } // end for
-    }); // end AJAX
+function operate() {
+  if (workingValue) {
+    currentEquation.operandOne = workingValue;
+    currentEquation.operator = $(this).attr("id");
+    workingValue = '';
+  } else {
 
+    error.empty();
+    error.append('Please enter an operand');
   }
+}
+
+function equate() {
+  if (currentEquation.operandOne && currentEquation.operator && workingValue) {
+    currentEquation.operandTwo = workingValue;
+    workingValue = '';
+  } else {
+    error.empty();
+    error.append('Please choose an operator first');
+  }
+}
+
+function clearAll() {
+  workingValue = '';
+  currentEquation.operandOne = '';
+  currentEquation.operandTwo = '';
+  currentEquation.operator = '';
+}
+
+function updateDisplay() {
+  $("#display").val(workingValue);
+}
