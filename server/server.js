@@ -5,7 +5,7 @@ const history = require('./modules/calcHistory')
 
 
 app.use(express.static('./server/public'));
-app.use('/history', history);
+//app.use('/history', history);
 app.use(router);
 
 const port = 5001;
