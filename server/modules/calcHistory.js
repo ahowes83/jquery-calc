@@ -52,6 +52,7 @@ router.get( '/', (req, res)=>{
     solution: newAnswer,
     allData: history
   });
+  newAnswer = [];
 });
 
 

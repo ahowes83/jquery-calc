@@ -85,6 +85,12 @@ function updateDisplay() {
   $("#display").val(workingValue);
 }
 
+function clearEquation() {
+  currentEquation.operandOne = '';
+  currentEquation.operandTwo = '';
+  currentEquation.operator = '';
+}
+
 function upload() {
   $.ajax({
     method: 'POST',
@@ -105,13 +111,16 @@ function getResults(){
     url: '/calcHistory'
 }).then( function( response ){
     console.log( response );
+
     workingValue = (response.solution).toString();
+
     const el = $('#history');
     el.empty();
     for( let i=0; i< response.allData.length; i++ ){
         el.append( `<li>${ response.allData[i].operandOne } ${ response.allData[i].operator } ${ response.allData[i].operandTwo } = ${ response.allData[i].result }</li>`);
     }
     updateDisplay();
+    clearEquation();
 }).catch( function( err ){
     console.log( err );
     alert( 'error getting results' );
