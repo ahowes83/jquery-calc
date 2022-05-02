@@ -64,6 +64,10 @@ router.post('/', (req, res)=>{
   res.sendStatus(200);
 });
 
-
+router.delete('/', (req, res)=>{
+  console.log('/calc DELETE:', req.body);
+  history = [];
+  res.sendStatus(200);
+})
 
 module.exports = router;

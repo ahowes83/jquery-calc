@@ -25,6 +25,8 @@ function onReady() {
 
   $("#dot").on('click', addDot);
 
+  $("#clearHistory").on('click', clearHistory);
+
 }
 
 function addDot() {
@@ -125,4 +127,17 @@ function getResults(){
     console.log( err );
     alert( 'error getting results' );
 });
+}
+
+function clearHistory(){
+  $.ajax({
+    method: 'DELETE',
+    url: '/calcHistory'
+  }).then(function (response){
+    const el = $('#history');
+    el.empty();
+  }).catch(function(err){
+    console.log(err);
+    alert('error clearing history');
+  });
 }
