@@ -106,7 +106,7 @@ function getResults(){
     url: '/calcHistory'
 }).then( function( response ){
     console.log( response );
-    workingValue = (response.solution)
+    workingValue = (response.solution).toString();
     const el = $('#history');
     el.empty();
     for( let i=0; i< response.allData.length; i++ ){
