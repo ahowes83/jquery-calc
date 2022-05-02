@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
+const bodyParser = require('body-parser');
 const history = require('./modules/calcHistory')
 
 
 app.use(express.static('./server/public'));
-//app.use('/history', history);
-app.use(router);
+app.use(bodyParser.urlencoded({extended:true}));
+app.use( '/calcHistory', history);
 
 const port = 5001;
 

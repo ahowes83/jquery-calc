@@ -10,11 +10,16 @@ button {
 }
 
 #display {
-  width: 12.4em;
+  width: 12.3em;
   text-align: right;
   background-color:powderblue;
-  border-radius: 1ex;
+  border-radius: .5ex;
+  border-color: gray;
   font-family: 'Lucida Console', 'Courier New', Courier, monospace;
   margin-left: .1em;
   font-size: x-large;
+}
+
+li {
+  list-style-type: lower-greek;
 }
