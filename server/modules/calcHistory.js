@@ -1,57 +1,65 @@
 const express = require('express');
 const router = express.Router();
 let history = [];
+let newAnswer = [];
 
-function piCheck(histList){
-  if (histList[i].operandOne === '3.14159') {
-    histList[i].operandOne = Math.PI;
+function piCheck(equation){
+  if (equation.operandOne === '3.14159') {
+    equation.operandOne = Math.PI;
   }
-  if (histList[i].operandTwo === '3.14159'){
-    histList[i].operandTwo = Math.PI;
+  if (equation.operandTwo === '3.14159'){
+    equation.operandTwo = Math.PI;
   }
 }
 
-function calculate(histList){
-  piCheck(histList);
-
-  for(let i=0; i< histList.length; i++){
-    let operator = histList[i].operator;
-    let result = histList[i].result;
-    let opOne = Number(histList[i].operandOne);
-    let opTwo = Number(histList[i].operandTwo);
-
-    switch (operator) {
-      case '*':
-        result = opOne * opTwo;
-        break;
-      case '/':
-        result = opOne / opTwo;
-        break;
-      case '+':
-        result = opOne + opTwo;
-        break;
-      case '-':
-        result = opOne - opTwo;
-        break;
-      case '^':
-        result = opOne ** opTwo;
-        break;
-      default:
-        console.log('That\'s a weird operator');
-    }
+function calculate(equationIn){
+  let equation = {
+    ...equationIn
   }
+
+  piCheck(equation);
+
+  let operator = equation.operator;
+  let opOne = Number(equation.operandOne);
+  let opTwo = Number(equation.operandTwo);
+  console.log(opOne, opTwo, operator);
+  switch (operator) {
+    case '*':
+      equation.result = opOne * opTwo;
+      break;
+    case '/':
+      equation.result = opOne / opTwo;
+      break;
+    case '+':
+      equation.result = opOne + opTwo;
+      break;
+    case '-':
+      equation.result = opOne - opTwo;
+      break;
+    case '^':
+      equation.result = opOne ** opTwo;
+      break;
+    default:
+      console.log('That\'s a weird operator');
+  }
+  newAnswer = equation.result;
+  return equation;
 }
 
 router.get( '/', (req, res)=>{
   console.log( '/calc GET' );
-  res.send( history );
-})
+  res.send( {
+    solution: newAnswer,
+    allData: history
+  });
+});
 
 
 
 router.post('/', (req, res)=>{
   console.log('/calc POST:', req.body);
-  history.push(req.body);
+  let postCalc = calculate(req.body);
+  history.push(postCalc);
   res.sendStatus(200);
 });
 

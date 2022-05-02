@@ -106,12 +106,13 @@ function getResults(){
     url: '/calcHistory'
 }).then( function( response ){
     console.log( response );
-
+    workingValue = (response.solution)
     const el = $('#history');
     el.empty();
-    for( let i=0; i< response.length; i++ ){
-        el.append( `<li>${ response[i].operandOne } ${ response[i].operator } ${ response[i].operandTwo } = ${ response[i].result }</li>`);
+    for( let i=0; i< response.allData.length; i++ ){
+        el.append( `<li>${ response.allData[i].operandOne } ${ response.allData[i].operator } ${ response.allData[i].operandTwo } = ${ response.allData[i].result }</li>`);
     }
+    updateDisplay();
 }).catch( function( err ){
     console.log( err );
     alert( 'error getting results' );

@@ -10,6 +10,7 @@ const history = require('./modules/calcHistory');
 app.use(express.static('./server/public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use( '/calcHistory', history);
+//app.use('/logic', logic);
 //app.get('/calc', function (req, res) {
  // res.send(logic.calculate());
 //});
