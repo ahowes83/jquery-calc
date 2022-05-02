@@ -22,8 +22,11 @@ button {
 
 #clearHistory {
   width: fit-content;
-  font-family:Georgia, 'Times New Roman', Times, serif;
-  font-size: medium;
+  height:fit-content;
+  padding-top: .3em;
+  padding-bottom: .37em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: large;
 }
 
 li {

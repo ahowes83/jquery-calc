@@ -87,12 +87,11 @@ function updateDisplay() {
 
 function upload() {
   $.ajax({
-    method: 'POST', // POST is for Create
+    method: 'POST',
     url: '/calcHistory',
     data: currentEquation
 }).then( function( response ){
     console.log( 'back from POST:', response );
-    //run getResults to update the DOM
     getResults();
 }).catch( function( err ){
     console.log( err );
