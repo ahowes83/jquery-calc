@@ -20,6 +20,12 @@ button {
   font-size: x-large;
 }
 
+#clearHistory {
+  width: fit-content;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: medium;
+}
+
 li {
-  list-style-type: lower-greek;
+  list-style-type:upper-roman;
 }

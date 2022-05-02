@@ -86,14 +86,13 @@ function updateDisplay() {
 }
 
 function upload() {
-
   $.ajax({
     method: 'POST', // POST is for Create
     url: '/calcHistory',
     data: currentEquation
 }).then( function( response ){
     console.log( 'back from POST:', response );
-    //run getPets to update the DOM
+    //run getResults to update the DOM
     getResults();
 }).catch( function( err ){
     console.log( err );
@@ -111,9 +110,8 @@ function getResults(){
     const el = $('#history');
     el.empty();
     for( let i=0; i< response.length; i++ ){
-        // append each pet to output el
         el.append( `<li>${ response[i].operandOne } ${ response[i].operator } ${ response[i].operandTwo } = ${ response[i].result }</li>`);
-    } // end for
+    }
 }).catch( function( err ){
     console.log( err );
     alert( 'error getting results' );
