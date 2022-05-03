@@ -31,4 +31,16 @@ button {
 
 li {
   list-style-type:upper-roman;
+  padding: .2em;
+  margin-left: .5em;
+}
+
+.reDo {
+  width:fit-content;
+  height:fit-content;
+  background-color: whitesmoke;
+}
+
+.reDo:active {
+  background-color: gray;
 }

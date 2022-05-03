@@ -6,6 +6,7 @@ let currentEquation = {
   operator: '',
   result: ''
 }
+let allData = [];
 //let error = $("#errorMessage");
 
 function onReady() {
@@ -14,6 +15,8 @@ function onReady() {
   $(".number").on('click', addDigit);
 
   $(".operator").on('click', operate);
+
+  $("#history").on('click', '.reDo', reDo);
 
   $("#equals").on('click', equate);
 
@@ -26,7 +29,6 @@ function onReady() {
   $("#dot").on('click', addDot);
 
   $("#clearHistory").on('click', clearHistory);
-
 }
 
 function addDot() {
@@ -113,13 +115,13 @@ function getResults(){
     url: '/calcHistory'
 }).then( function( response ){
     console.log( response );
-
+    allData = response.allData;
     workingValue = (response.solution).toString();
 
     const el = $('#history');
     el.empty();
     for( let i=0; i< response.allData.length; i++ ){
-        el.append( `<li>${ response.allData[i].operandOne } ${ response.allData[i].operator } ${ response.allData[i].operandTwo } = ${ response.allData[i].result }</li>`);
+        el.append( `<li><button data-Index="${i}" class="reDo"> ${response.allData[i].operandOne} ${response.allData[i].operator} ${response.allData[i].operandTwo} = ${ response.allData[i].result }</button></li>`);
     }
     updateDisplay();
     clearEquation();
@@ -136,8 +138,17 @@ function clearHistory(){
   }).then(function (response){
     const el = $('#history');
     el.empty();
+    clearAll();
   }).catch(function(err){
     console.log(err);
     alert('error clearing history');
   });
+}
+
+function reDo(){
+  let index = $(this).data('index');
+  currentEquation.operandOne = allData[index].operandOne;
+  currentEquation.operator = allData[index].operator;
+  workingValue = allData[index].operandTwo;
+  equate();
 }
